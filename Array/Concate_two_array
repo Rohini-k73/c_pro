@@ -1,0 +1,43 @@
+#include <stdio.h>
+// Concatenate two arrays
+
+void main() {
+    int size1, size2;
+
+    // Input size of the first array
+    printf("Enter the size of the first array: ");
+    scanf("%d", &size1);
+
+    // Input size of the second array
+    printf("Enter the size of the second array: ");
+    scanf("%d", &size2);
+
+    int arr1[size1], arr2[size2], concat[size1 + size2], i, j;
+
+    // Input elements of the first array
+    printf("Enter elements of the first array:\n");
+    for (i = 0; i < size1; i++) {z
+        scanf("%d", &arr1[i]);
+    }
+
+    // Input elements of the second array
+    printf("Enter elements of the second array:\n");
+    for (i = 0; i < size2; i++) {
+        scanf("%d", &arr2[i]);
+    }
+
+    // Concatenate both arrays
+    for (i = 0; i < size1; i++) {
+        concat[i] = arr1[i];
+    }
+
+    for (j = 0; j < size2; j++) {
+        concat[size1 + j] = arr2[j];
+    }
+
+    // Print the concatenated array
+    printf("Concatenated array:\n");
+    for (i = 0; i < size1 + size2; i++) {
+        printf("%d ", concat[i]);
+    }
+}
