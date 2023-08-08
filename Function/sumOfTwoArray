@@ -1,0 +1,41 @@
+#include <stdio.h>
+// sum of two array
+// Function prototypes
+void sum(int[], int[], int);
+
+void main(){
+    int size;
+    printf("Enter the size of the arrays: ");
+    scanf("%d", &size);
+
+    int a[size], b[size], i;
+
+    // First array
+    printf("Enter element of the array 1: ");
+    for (i = 0; i < size; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    // Second array
+    printf("Enter element of the array 2: ");
+    for (i = 0; i < size; i++) {
+        scanf("%d", &b[i]);
+    }
+    sum(a, b, size);
+
+}
+
+void sum(int* a, int* b, int size) {
+    int c[size];
+    int i;
+
+    for (i = 0; i < size; i++) {
+        c[i] = a[i] + b[i];
+    }
+
+    printf("Sum of two array elements are:\n");
+
+    for (i = 0; i < size; i++) {
+        printf("%d\n", c[i]);
+    }
+}
