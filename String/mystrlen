@@ -1,0 +1,14 @@
+#include<stdio.h>
+int mystrlen(char*);
+void main(){
+	char str1[] = "Hello, how are you";
+	int length = mystrlen(str1);
+	printf("%d", length);
+}
+int mystrlen(char* str){
+	int i =0;
+	while(str[i]!=0){
+		i++;
+	}
+	return i;
+}
