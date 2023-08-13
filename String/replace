@@ -1,0 +1,16 @@
+#include<stdio.h>
+char* mystrrchr(char*);
+void main(){
+	char str1[] = "Hello, how are you, where are you";
+	char* str3=mystrrchr(str1);
+	printf("%s", str3);
+}
+char* mystrrchr(char* str){
+	int i=0;
+	while(str[i]!='\0'){
+		if(str[i]==',')
+			str[i]='_';
+		i++;
+	}
+	return str;
+}
