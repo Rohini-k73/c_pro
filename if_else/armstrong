@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+void main() {
+    int no, arm = 0, rem, power = 0, multiple = 1;
+    int dup;
+    printf("Enter your number: ");
+    scanf("%d", &no);
+
+    // Counting digits in the number
+    dup = no;
+    while (no) {
+        power++;
+        no = no / 10;
+    }
+
+    no = dup;
+    while (no) {
+        rem = no % 10;
+
+        for (int i = 1; i <= power; i++) {
+            multiple = multiple * rem;
+        }
+        arm = arm + multiple;
+        multiple = 1;
+        no = no / 10;
+    }
+
+    if (dup == arm)
+        printf("Given number %d is an Armstrong number\n", dup);
+    else
+        printf("Given number %d is not an Armstrong number\n", dup);
+}
