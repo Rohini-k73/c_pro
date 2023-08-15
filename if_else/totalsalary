@@ -1,0 +1,27 @@
+#include<stdio.h>
+
+//total salary
+
+void main()
+{
+	float sal;
+	float da, ta, hra;
+	
+	printf("Enter your salary: ");
+	scanf("%f",&sal);
+	
+	if(sal<=5000)
+	{
+		da = sal * 0.1; //10/100 10%
+		ta = sal * 0.2; //20/100 20%
+		hra = sal * 0.25; //25/100 25%
+		
+	}
+	else{
+		da = sal * 0.15; //15/100 15%
+		ta = sal * 0.25; //25/100 25%
+		hra = sal * 0.3; //30/100 30%
+	}
+	float totalsal = da+ta+hra;
+	printf("\n total salary = %f, da = %f, ta =%f, hra=%f ",totalsal , da , ta , hra);
+}
