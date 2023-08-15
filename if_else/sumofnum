@@ -1,0 +1,37 @@
+//Adding first and last digit of a number
+//#include<stdio.h>
+//
+//void main(){
+//	int num = 92417, digit, sum=0;
+//	
+//	sum = num % 10;
+//	
+//	while(num){
+//		digit = num % 10;
+//		num = num / 10;
+//	}
+//	sum = sum + digit;
+//	
+//	printf("sum of first and last digits of given number is %d", sum);
+//}
+
+#include<stdio.h>
+
+void main()
+ {
+	int num, firstd, sum=0;
+	
+	printf("Enter your number :");
+	scanf("%d", &num);
+	
+	int lastd = num % 10;
+	
+	while(num)
+	{
+		firstd = num % 10;
+		num = num / 10;
+	}
+	sum = lastd + firstd;
+	
+	printf("Sum of first and last digits of given number is %d", sum);
+}
