@@ -1,0 +1,245 @@
+//menu driven of array
+#include<stdio.h>
+void min_max(int*, int);
+void sum_average(int*, int);
+void search(int*, int);
+void even_odd(int*, int);
+void reverse(int*, int);
+void frequency(int*, int);
+void sum_of_arrays(int*, int);
+void concatenate(int*, int);
+
+void main(){
+	int size, choice, i;	
+	printf("Enter the size of Array: ");
+	scanf("%d", &size);
+	int arr[size];
+	printf("Enter the elements of array:\n");
+	for(i=0;i<size;i++){
+		scanf("%d", &arr[i]);
+	}
+	while(1){
+		printf("\n<<<<----------------Choose one option from below choices--------------------->>>>\n");
+		printf("Press 1: Find Minimum and Maximum value in array\n");
+		printf("Press 2: Find sum and average of values in array\n");
+		printf("Press 3: Search a number in given array\n");
+		printf("Press 4: even odd in array\n");
+		printf("Press 5: print given array in reverse order\n");
+		printf("Press 6: Frequency of values in array\n");
+		printf("Press 7: Sum of two arrays\n");
+		printf("Press 8: Concatenate two array\n");
+	//	printf("Press 9: Sum of two arrays\n");
+		printf("Press 10: for close the program\n");
+		scanf("%d", &choice);
+	
+		if(choice==1){
+			min_max(arr, size);
+		}
+		else if(choice==2){
+			sum_average(arr, size);
+		}
+		else if(choice==3){
+			search(arr, size);
+		}
+		else if(choice==4){
+			even_odd(arr, size);
+		}
+		else if(choice==5){
+			reverse(arr, size);
+		}
+		else if(choice==6){
+			frequency(arr, size);
+		}
+		else if(choice==7){
+			sum_of_arrays(arr, size);
+		}
+		else if(choice==8){
+			concatenate(arr, size);
+		}
+	//	else if(choice==9){
+	//		search(num);
+	//	}
+		else if(choice==10){
+			printf("-------Closing the program-------\n");
+			printf("---------- Thank you:) ----------\n");
+			exit(0);
+		}
+		else{
+			printf("\n Wrong choice****");
+		}
+	}
+}
+
+//1 minimum
+void min_max(int* ptr, int size){
+	int i, min=ptr[0], max=ptr[0];
+	
+	for(i=0;i<size;i++){
+		if(min>ptr[i])
+			min=ptr[i];
+	}
+	printf("\nMinimum element in array is: %d", min);
+	
+	for(i=0;i<size;i++){
+		if(max<ptr[i])
+			max=ptr[i];
+	}
+	printf("\nMaximum element in array is: %d", max);
+}
+
+//2 sum and average
+void sum_average(int* ptr, int size){
+	int i;
+	float sum=0, avg;
+	
+	for(i=0;i<size;i++){
+		sum = sum + ptr[i];
+	}
+	printf("\nSum of elements in array is: %f\n", sum);
+
+	avg = sum / size;
+	printf("\average of elements in array is: %f\n", avg);
+}
+
+//3 search a number in given array
+void search(int* ptr, int size){
+	int i, flag=0, num;
+	
+	printf("Enter the number that you want to find in array: ");
+	scanf("%d", &num);
+	for(i=0;i<size;i++){
+		if(num==ptr[i])
+		{
+			flag=1;
+			printf("number found. it's on the %dth position of array\n", i);
+			break;
+		}
+	}
+	if(flag==0)
+		printf("Number not found!!\n");
+}
+
+//4 even odd in array
+void even_odd(int* ptr, int size){
+	int i, sum=0, num;
+	
+	printf("Following are the even numbers in the given array: ");
+	for(i=0;i<size;i++){
+		if(ptr[i]%2==0)
+		{
+			printf("%d ", ptr[i]);
+			sum = sum + ptr[i];
+		}
+	}
+	printf("\nThe sum of even numbers of array is: %d\n", sum);
+	sum=0;
+	printf("\nFollowing are the odd numbers in the given array: ");
+	for(i=0;i<size;i++){
+		if(ptr[i]%2!=0)
+		{
+			printf("%d ", ptr[i]);
+			sum = sum + ptr[i];
+		}
+	}
+	printf("\nThe sum of odd numbers of array is: %d\n", sum);
+}
+
+//5 print array in reverse order
+void reverse(int* ptr, int size){
+	int i;
+
+	printf("Printing elements of array in reverse order: \n");
+	for(i=size-1;i>=0;i--){
+		printf("%d\t", ptr[i]);
+	}
+}
+
+//6 Frequency of numbers in given array
+void frequency(int* ptr, int size){
+	int i, j, count, arr2[size];
+	
+	for(i=0;i<size;i++){
+		arr2[i]=0;
+	}
+	for(i=0;i<size;i++){
+		count=1;
+		if(arr2[i]==0){
+			for(j=i+1;j<size;j++){
+				if(ptr[i]==ptr[j]){
+					count++;
+					arr2[j]=1;
+				}
+			}
+			printf("%d number is %d times in given array\n", ptr[i], count);
+		}
+	}
+}
+
+//7 sum of two array
+void sum_of_arrays(int* ptr, int size1){
+	int size2, size3;
+	
+	printf("Enter the size of second Array: ");
+	scanf("%d", &size2);
+	
+	if(size1<=size2)
+		size3 = size2;
+	else if(size1>=size2)
+		size3 = size1;
+		
+	int arr2[size2], sum[size3], i;
+	
+	printf("Enter the elements of second array:\n");
+	for(i=0;i<size2;i++){
+		scanf("%d", &arr2[i]);
+	}
+	
+	for(i=0;i<size3;i++){
+		if(i<size1 && i<size2){
+			sum[i] = ptr[i] + arr2[i];
+		}
+		else if(i<size1){
+			sum[i]=ptr[i];
+		}
+		else {
+			sum[i]=arr2[i];
+		}
+	}
+
+	printf("Sum of two array is: ");
+	for(i=0;i<size3;i++){
+		printf("%d ", sum[i]);
+	}
+	printf("\n");
+}
+
+//8 Concatenate two arrays
+void concatenate(int* ptr, int size1){
+	int size2, size3;
+	
+	printf("Enter the size of seconds Array: ");
+	scanf("%d", &size2);
+
+	size3 = size1 + size2;	
+	int arr2[size2], con[size3], i, j;
+	
+	printf("Enter the elements of second array:\n");
+	for(i=0;i<size2;i++){
+		scanf("%d", &arr2[i]);
+	}
+	
+	for(i=0, j=0;i<size3;i++){
+		if(i<size1){
+			con[i] = ptr[i];
+		}
+		else{
+			con[i]=arr2[j];
+			j++;
+		}
+	}
+	
+	printf("Concatenate of two array is: ");
+	for(i=0;i<size3;i++){
+		printf("%d ", con[i]);
+	}
+}
