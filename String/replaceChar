@@ -1,0 +1,28 @@
+#include<stdio.h>
+
+// Replace old char with new char in a string
+
+char* mystrrchr(char*, char, char);
+void main(){
+	char str1[] = "Hello, how are you, where are you";
+	char old, newchar;
+	
+	printf("Enter the old char that you want to replace: ");
+	scanf("%c", &old);
+	
+	printf("Enter the new char that you want to replace with old char: ");
+	scanf("%d"); //user to avoid enter key crossing with scanf
+	scanf("%c", &newchar);
+	
+	char* str3 = mystrrchr(str1, old, newchar);
+	printf("%s", str3);
+}
+char* mystrrchr(char* str, char old, char newchar){
+	int i=0;
+	while(str[i]!='\0'){
+		if(str[i]== old)
+			str[i]= newchar;
+		i++;
+	}
+	return str;
+}

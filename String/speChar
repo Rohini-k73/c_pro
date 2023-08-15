@@ -1,0 +1,20 @@
+#include<stdio.h>
+//special charcter
+int spchar(char*);
+void main(){
+	char str[50] = "he#y:> ho*w are yo	u:) <.> a$$ & hel!";
+	
+	int count = spchar(str);
+	printf("Total special characters are: %d", count);
+}
+int spchar(char* str){
+	int i=-1, count=0;
+	
+	while(str[++i] != '\0'){
+		if((str[i]>=48 && str[i]<=57) || (str[i]>=65 && str[i]<=90) || (str[i]>=97 && str[i]<=122) || str[i]==9 || str[i]==32)
+			continue;
+		else
+			count++;
+	}
+	return count;
+}

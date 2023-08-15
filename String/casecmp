@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<string.h>
+//strcasecmp
+void main(){
+	char str1[30] = "firstbit";
+	char str2[20] = "solutions";
+	int result;
+	result = strcasecmp(str1,str2);
+	if(result==0){
+	printf("String are equal\n" );	
+	}
+	else if(result<0){
+		printf("%s is less than %s\n", str1,str2);
+	} else{
+		printf("%s is greater than %s\n", str1,str2);
+	}
+	
+}

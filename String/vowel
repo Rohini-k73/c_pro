@@ -1,0 +1,25 @@
+#include<stdio.h>
+//vowels and consonants
+void spchar(char*);
+void main(){
+	char str[50] = "he#y:> ho*w are yo	u:) <.> a$$ & hel!";
+	
+	spchar(str);
+}
+void spchar(char* str){
+	int i=-1, vowels=0, consonants=0, spchr=0;
+	
+	while(str[++i] != '\0'){
+		if(str[i]=='a' || str[i]=='A' || str[i]=='e' || str[i]=='E' || str[i]=='i' || str[i]=='I' || str[i]=='o' || str[i]=='O' || str[i]=='u' || str[i]=='U')
+			vowels++;
+		else if((str[i]>=65 && str[i]<=90) || (str[i]>=97 && str[i]<=122))
+			consonants++;
+		else if((str[i]>=48 && str[i]<=57) || str[i]==9 || str[i]==32)
+			continue;
+		else
+			spchr++;
+	}
+	printf("Total vowels are: %d\n", vowels);
+	printf("Total consonants are: %d\n", consonants);
+	printf("Total special characters are: %d\n", spchr);
+}
