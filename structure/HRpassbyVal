@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+typedef struct HR
+{
+    char name[20];
+    double sal;
+    double id;
+    char commission[50];
+} HR;
+
+HR storevalue(HR h1);
+void display(HR h1);
+
+void main()
+{
+    HR h1;
+    h1 = storevalue(h1);
+    display(h1);
+
+}
+
+HR storevalue(HR h1)
+{
+    printf("Enter the name: ");
+    scanf("%s", h1.name);
+
+    printf("Enter the salary: ");
+    scanf("%lf", &h1.sal);
+
+    printf("Enter id: ");
+    scanf("%lf", &h1.id);
+
+    printf("Enter commission: ");
+    scanf("%s", h1.commission);
+
+    return h1;
+}
+
+void display(HR h1)
+{
+    printf("Name: %s\nSalary: %lf\nID: %lf\nCommission: %s\n", h1.name, h1.sal, h1.id, h1.commission);
+}
