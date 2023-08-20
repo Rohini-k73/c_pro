@@ -1,0 +1,16 @@
+#include<stdio.h>
+typedef struct student
+{
+	int roll;
+	char name[20];
+}student;
+
+void main(){
+	student s1;
+	printf("Enter the name: ");
+	scanf("%s", &s1.name);
+	printf("Enter the roll no: ");
+	scanf("%d", &s1.roll);
+	
+	printf("Name: %s\nRoll no: %d\n", s1.name, s1.roll);
+}
