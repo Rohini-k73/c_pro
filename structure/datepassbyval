@@ -1,0 +1,30 @@
+#include<stdio.h>
+//date using typedef
+typedef struct date
+{
+	int date;
+	int month;
+	int year;
+}date;
+date storevalue(date d);
+void display(date d);
+void main()
+{
+	date d;
+	d=storevalue(d);
+	display(d);	
+}
+date storevalue(date d){
+	printf("Enter date: ");
+	scanf("%d", &d.date);
+	
+	printf("Enter minutes: ");
+	scanf("%d", &d.month);
+	
+	printf("Enter sec: ");
+	scanf("%d", &d.year);
+	return d;
+}
+void display(date d){	
+	printf("day%d-month%d-year%d", d.date,d.month,d.year);
+}
