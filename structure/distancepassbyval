@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+typedef struct distance  
+{
+    int feet;
+    float inch;
+} distance;
+
+distance storevalue(distance d);
+void display(distance d);
+
+int main(){
+    distance d;
+    d = storevalue(d);
+    display(d);
+    return 0;
+}
+
+distance storevalue(distance d){
+    printf("Enter feet : ");
+    scanf("%d", &d.feet);
+	
+    printf("Enter inch : ");
+    scanf("%f", &d.inch);
+	
+    return d;
+}
+
+void display(distance d){
+    printf("feet : %d\ninch : %f", d.feet, d.inch);
+}
