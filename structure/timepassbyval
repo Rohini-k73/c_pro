@@ -1,0 +1,33 @@
+#include<stdio.h>
+//time using typedef pass by value
+typedef struct time
+{
+	int hour;
+	int min;
+	int sec;
+}time;
+time storevalue(time t);
+void display(time t);
+void main()
+{
+	time t;
+	t=storevalue(t);
+	display(t);
+}
+time storevalue(time t){
+
+	printf("Enter hour: ");
+	scanf("%d", &t.hour);
+	
+	printf("Enter minutes: ");
+	scanf("%d", &t.min);
+	
+	printf("Enter sec: ");
+	scanf("%d", &t.sec);
+	
+	return t;
+}
+void display(time t)
+{
+	printf("hour%d-min%d-sec%d", t.hour, t.min,t.sec);
+}
