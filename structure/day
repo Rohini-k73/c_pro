@@ -1,0 +1,22 @@
+#include<stdio.h>
+//time using typedef
+typedef struct date
+{
+	int date;
+	int month;
+	int year;
+}date;
+
+void main(){
+	date d;
+	printf("Enter day: ");
+	scanf("%d", &d.date);
+	
+	printf("Enter minutes: ");
+	scanf("%d", &d.month);
+	
+	printf("Enter sec: ");
+	scanf("%d", &d.year);
+	
+	printf("day%d-month%d-year%d", d.date,d.month,d.year);
+}
