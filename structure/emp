@@ -1,0 +1,24 @@
+#include<stdio.h>
+//using typedef emp
+typedef struct emplyoee
+ {
+ 	int id ;
+ 	char name[20];
+ 	double sal;
+	
+ }emplyoee;
+  void main()
+  {
+  	struct emplyoee e1;
+  	printf("Enter the id of emp :");
+  	scanf("%d",&e1.id);
+  	
+  	printf("Enter the name of emp :");
+  	scanf("%s",&e1.name);
+  	
+  	printf("Enter the sal of emp :");
+  	scanf("%lf",&e1.sal);
+  	
+  	printf("The id of emplyoee is: %d\n The name of emplyoee %s:\n The sal of emplyoee is: %lf\n", e1.id, e1.name, e1.sal);
+  	
+  }
