@@ -1,0 +1,22 @@
+#include<stdio.h>
+//time using typedef
+typedef struct time
+{
+	int hour;
+	int min;
+	int sec;
+}time;
+
+void main(){
+	time t;
+	printf("Enter hour: ");
+	scanf("%d", &t.hour);
+	
+	printf("Enter minutes: ");
+	scanf("%d", &t.min);
+	
+	printf("Enter sec: ");
+	scanf("%d", &t.sec);
+	
+	printf("hour%d-min%d-sec%d", t.hour, t.min,t.sec);
+}
