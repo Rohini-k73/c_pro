@@ -1,0 +1,36 @@
+#include <stdio.h>
+// Date using typedef
+typedef struct date
+{
+    int day;   
+    int month;
+    int year;
+} date;
+
+date storevalue(date *this);
+void display(date *this);
+
+void main() 
+{
+    date d;
+    storevalue(&d);
+    display(&d);  
+}
+
+date storevalue(date *this)
+{
+    printf("Enter day: ");
+    scanf("%d", &this->day);
+
+    printf("Enter month: ");
+    scanf("%d", &this->month);
+
+    printf("Enter year: ");
+    scanf("%d", &this->year);
+//    return *this;   
+}
+
+void display(date *this)
+{
+    printf("day %d - month %d - year %d", this->day, this->month, this->year);  
+}
