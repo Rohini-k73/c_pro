@@ -1,0 +1,42 @@
+#include <stdio.h>
+//pass by address
+typedef struct HR
+{
+    char name[20];
+    double sal;
+    double id;
+    int commission;
+} HR;
+
+HR storevalue(HR* this);
+void display(HR* this);
+
+void main()
+{
+    HR h1;
+    storevalue(&h1);
+    display(&h1);
+
+}
+
+HR storevalue(HR* this)
+{
+    printf("Enter the name: ");
+    scanf("%s", &this->name);
+
+    printf("Enter the salary: ");
+    scanf("%lf", &this->sal);
+
+    printf("Enter id: ");
+    scanf("%lf", &this->id);
+
+    printf("Enter commission: ");
+    scanf("%d", &this->commission);
+
+//    return *this;
+}
+
+void display(HR* this)
+{
+    printf("Name: %s\nSalary: %lf\nID: %lf\nCommission: %d\n", this->name,this->sal,this->id, this->commission);
+}
