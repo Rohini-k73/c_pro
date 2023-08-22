@@ -1,0 +1,38 @@
+#include <stdio.h>
+//emplyoee pass by value
+typedef struct employee
+{
+    int id;
+    char name[20];
+    double sal;
+} employee;
+
+employee storevalue(employee* this);
+void display(employee* this);
+
+void main()
+{
+    employee e1;
+    storevalue(&e1);
+    display(&e1);
+
+}
+
+employee storevalue(employee* this)
+{
+    printf("Enter the id of emp: ");
+    scanf("%d", &this->id);
+
+    printf("Enter the name of emp: ");
+    scanf("%s", &this->name);
+
+    printf("Enter the sal of emp: ");
+    scanf("%lf", &this->sal);
+
+//    return e1;
+}
+
+void display(employee* this)
+{
+    printf("The id of employee is: %d\nThe name of employee is: %s\nThe sal of employee is: %lf\n", this->id, this->name, this->sal);
+}
