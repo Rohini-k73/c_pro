@@ -1,0 +1,31 @@
+#include <stdio.h>
+//pass by address distance
+typedef struct distance  
+{
+    int feet;
+    float inch;
+} distance;
+
+distance storevalue(distance* this);
+void display(distance* this);
+
+void main(){
+    distance d;
+    storevalue(&d);
+    display(&d);
+   
+}
+
+distance storevalue(distance* this){
+    printf("Enter feet : ");
+    scanf("%d", &this->feet);
+	
+    printf("Enter inch : ");
+    scanf("%f", &this->inch);
+	
+//    return *this;
+}
+
+void display(distance* this){
+    printf("feet : %d\ninch : %f", this->feet, this->inch);
+}
