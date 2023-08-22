@@ -1,0 +1,41 @@
+#include <stdio.h>
+//typedef salesman pass by address
+typedef struct salesman
+{
+    char name[20];
+    double sal;
+    double incentive;
+    double target;
+} salesman;
+
+salesman storevalue(salesman* this);
+void display(salesman* this);
+void main()
+{
+	
+    salesman s1;
+    storevalue(&s1);
+    display(&s1);		
+}
+	
+salesman storevalue(salesman* this){
+
+    printf("Enter the name: ");
+    scanf("%s", &this->name);
+
+    printf("Enter the salary: ");
+    scanf("%lf", &this->sal);
+
+    printf("Enter incentive: ");
+    scanf("%lf", &this->incentive);
+
+    printf("Enter target: ");
+    scanf("%lf", &this->target);
+
+//	return *this;
+}
+void display(salesman* this){
+
+    printf("Name: %s\nSalary: %.2lf\nIncentive: %.2lf\nTarget: %.2lf\n", this->name, this->sal, this->incentive, this->target);
+}
+
