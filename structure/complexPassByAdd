@@ -1,0 +1,35 @@
+#include <stdio.h>
+//emplyoee pass by address
+typedef struct complex
+{
+	float real;
+	float imag;
+    
+} complex;
+
+complex storevalue(complex* this);
+void display(complex* this);
+
+void main()
+{
+   complex c;
+    storevalue(&c);
+    display(&c);
+
+}
+
+complex storevalue(complex* this)
+{
+    printf("Enter the real num: ");
+    scanf("%f", &this->real);
+
+    printf("Enter the imag num: ");
+    scanf("%f", &this->imag);
+
+//    return *this;
+}
+
+void display(complex* this)
+{
+    printf("Real num %f imag num %f",this->real , this->imag);
+}
