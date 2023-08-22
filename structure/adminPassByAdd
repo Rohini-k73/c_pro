@@ -1,0 +1,39 @@
+#include <stdio.h>
+//emplyoee pass by address
+typedef struct admin
+{
+    int id;
+    char name[20];
+    double sal;
+    
+} admin;
+
+admin storevalue(admin* this);
+void display(admin* this);
+
+void main()
+{
+    admin a1;
+    storevalue(&a1);
+    display(&a1);
+
+}
+
+admin storevalue(admin* this)
+{
+    printf("Enter the id of admin: ");
+    scanf("%d", &this->id);
+
+    printf("Enter the name of admin: ");
+    scanf("%s", &this->name);
+
+    printf("Enter the sal of admin: ");
+    scanf("%lf", &this->sal);
+
+//    return *this;
+}
+
+void display(admin* this)
+{
+    printf("The id of employee is: %d\nThe name of employee is: %s\nThe sal of employee is: %lf\n", this->id, this->name, this->sal);
+}
