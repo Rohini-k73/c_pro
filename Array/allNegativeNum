@@ -1,0 +1,29 @@
+#include <stdio.h>
+//#include <limits.h> // For INT_MIN
+
+void main() {
+    int size;
+    printf("Enter size of the array (1-1000): ");
+    scanf("%d", &size);
+
+    int arr[size], i;
+    int count=0;
+
+    /* Input array elements */
+    printf("Enter elements in the array: ");
+    for (i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+     printf("number is");
+    for (i = 0; i < size; i++) {
+       if(arr[i]<=0){
+	   printf("%d", arr[i]);
+       count++;
+    }
+}
+if(count==0){
+	 printf("number is not found");
+}
+
+}
