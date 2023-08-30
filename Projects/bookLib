@@ -1,0 +1,462 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_BOOKS 10 //macros const
+
+//int MAX_BOOKS = 10; //preprocessor global
+
+typedef struct Book 
+{
+    int bookId;
+    char bookTitle[25];
+    char bookAuthor[25];
+    double bookPrice;
+    double bookRating;
+} Book;
+
+void setOfBooks(Book*);
+void display(Book*);
+int findBookById(Book*);
+int findBookByName(Book*);
+void updateBookInfo(Book*, int);
+void deleteBook(Book*, int);
+void findMaxValue(Book*);
+void findTopThreeBooks(Book*);
+//void addBook(Book* b, int* newBooks);
+
+void main() {
+    int userChoice, bookIndex, num;
+    char control;
+    int choose;
+    Book b[MAX_BOOKS];
+//    int newBooks = 0;
+    setOfBooks(b);
+	
+//	int capacity = MAX_BOOKS;
+//	Book* b = (Book*)malloc(capacity * sizeof(Book));
+	printf("Enter any digit to get menu ::");
+	scanf("%d",&num);
+	printf("\n");
+
+    printf("------------------------Welcome to Book Library---------------------------\n");
+    printf("\n");
+
+    do {
+        printf("Press 1:: Display all Books\n");
+        printf("Press 2:: Search a Book\n");
+        printf("Press 3:: Update book info\n");
+        printf("Press 4:: Delete a Book\n");
+        printf("Press 5:: Show a book with Max Price/Rating\n");
+        printf("Press 6:: Show Top 3 Books\n");
+//        printf("Press 7:: Add a Book\n");
+
+        scanf("%d", &userChoice);
+
+        switch (userChoice) 
+		{
+            case 1:
+                for (bookIndex = 0; bookIndex < MAX_BOOKS; bookIndex++) 
+				{
+                    display(&b[bookIndex]);
+                }
+                break;
+            case 2:
+                // Search
+                printf("Search by id press 1 or name 2 :: ");
+                scanf("%d", &choose);
+                if (choose == 1)
+                    bookIndex = findBookById(b);
+                else if (choose == 2)
+                    bookIndex = findBookByName(b);
+                if (bookIndex >= MAX_BOOKS) 
+				{
+                    printf("***Not Found***\n");
+                }
+                break;
+            case 3:
+                // Update
+                printf("Update by id press 1 or name 2 :: ");
+                scanf("%d", &choose);
+                if (choose == 1) 
+				{
+                    bookIndex = findBookById(b);
+                } else if (choose == 2) 
+				{
+                    bookIndex = findBookByName(b);
+                }
+                if (bookIndex >= MAX_BOOKS) 
+				{
+                    printf("***Book not Found***\n");
+                } else 
+				{
+                    updateBookInfo(b, bookIndex);
+                }
+                break;
+                
+            case 4:
+                // Remove
+                printf("Remove by id press 1 or name 2:: ");
+                scanf("%d", &choose);
+                if (choose == 1) 
+				{
+                    bookIndex = findBookById(b);
+                } else if (choose == 2) 
+				{
+                    bookIndex = findBookByName(b);
+                }
+                if (bookIndex >= MAX_BOOKS) 
+				{
+                    printf("***Book not Found***\n");
+                } else {
+                    deleteBook(b, bookIndex);
+                }
+                break;
+                
+            case 5:
+                // Max
+                findMaxValue(b);
+                break;
+              
+            case 6:
+			    // Top 3
+                findTopThreeBooks(b);
+                break;
+                
+//            case 7:
+//                // Add a Book
+//                addBook(b, &newBooks);
+//                break;
+            default:
+                printf("\n***Wrong choice***\n");
+                break;
+        }
+
+        printf("\nDo you want to continue ('y' for yes and 'n' for no):: ");
+        fflush(stdin);
+        scanf(" %c", &control);
+    } while (control == 'y' || control == 'Y');
+    
+//    free(b);
+
+    printf("\n------------------------ Thank you :)-----------------------------\n");
+   
+}
+
+//all books
+void display(Book* book)
+{
+//
+//    printf("\n\tBook id: %d\n", book->bookId);
+//    printf("\tBook Title: %s\n", book->bookTitle);
+//    printf("\tAuthor Name: %s\n", book->bookAuthor);
+//    printf("\tPrice: %lf\n", book->bookPrice);
+//    printf("\tRating: %lf\n", book->bookRating);
+    
+    printf("+----------------------------------------------------------------+\n");
+	printf("|\tBook id    : %-44d|\n", book->bookId);
+	printf("|----------------------------------------------------------------|\n");
+	printf("|\tBook Name  : %-44s|\n", book->bookTitle);
+	printf("|----------------------------------------------------------------|\n");
+	printf("|\tAuthor Name: %-44s|\n", book->bookAuthor);
+	printf("|----------------------------------------------------------------|\n");
+	printf("|\tPrice      : %-44lf|\n", book->bookPrice);
+	printf("|----------------------------------------------------------------|\n");
+	printf("|\tRating     : %-44lf|\n", book->bookRating);
+	printf("+----------------------------------------------------------------+\n");
+	printf("\n");
+	
+}
+
+//search book by id
+int findBookById(Book* b) 
+{
+    int searchId, i;
+    printf("Enter id :: ");
+    scanf("%d", &searchId);
+
+    for (i = 0; i < MAX_BOOKS; i++) 
+	{
+        if (searchId == b[i].bookId) 
+		{
+            printf("***Found***\n");
+            display(&b[i]);
+            return i;
+        }
+    }
+
+    return i;
+}
+
+//search books by name
+int findBookByName(Book* b) 
+{
+    char searchName[25];
+    int i;
+    printf("Enter book Name :: ");
+    scanf("%s", searchName);
+
+    for (i = 0; i < MAX_BOOKS; i++) 
+	{
+        if (strcasecmp(b[i].bookTitle, searchName) == 0) 
+		{
+            printf("***Found***\n");
+            display(&b[i]);
+            return i; 
+        }
+    }
+
+//    return i;
+}
+
+//update function
+void updateBookInfo(Book* b, int index) 
+{
+    int updateChoice; 
+    printf("What do you want to update? Press 1 for price and 2 for rating ::");
+    scanf("%d", &updateChoice);
+	
+    if (updateChoice == 1) 
+	{ 
+        printf("Enter new Price :: ");
+        scanf("%lf", &b[index].bookPrice);
+    } else if (updateChoice == 2) 
+	{ 
+        printf("Enter new rating :: ");
+        scanf("%lf", &b[index].bookRating);
+    }
+
+    printf("\n***Updated book***\n");
+    display(&b[index]);
+}
+
+
+//delete function
+void deleteBook(Book* b, int index) 
+{
+    int i;
+    for (i = index; i < MAX_BOOKS - 1; i++) 
+	{
+        b[i] = b[i + 1];
+    }
+    printf("\n***Book Removed***\n");
+    for (i = 0; i < MAX_BOOKS - 1; i++) 
+	{
+        display(&b[i]);
+    }
+}
+
+// max function
+void findMaxValue(Book* b) 
+{
+    double maxPrice = 0, maxRating = 0;
+    int maxPriceIndex = -1, maxRatingIndex = -1;
+    int choice;
+
+    printf("Price or Rating? Press 1 for Price or 2 for Rating ::");
+    scanf("%d", &choice);
+
+    if (choice == 1) //choice for price
+	{
+        int i;
+        for (i = 0; i < MAX_BOOKS; i++) 
+		{
+            if (b[i].bookPrice > maxPrice) 
+			{
+                maxPrice = b[i].bookPrice;
+                maxPriceIndex = i;
+            }
+        }
+
+        if (maxPriceIndex != -1) 
+		{
+            display(&b[maxPriceIndex]);
+        }
+    } else if (choice == 2) //choice for rating
+	{
+        int i;
+
+        for (i = 0; i < MAX_BOOKS; i++) 
+		{
+            if (b[i].bookRating > maxRating) 
+			{
+                maxRating = b[i].bookRating;
+                maxRatingIndex = i;
+            }
+        }
+        
+        if (maxRatingIndex != -1) 
+		{
+            display(&b[maxRatingIndex]);
+        }
+    } else {
+        printf("***Invalid choice***\n");
+    }
+}
+
+
+// top three function
+void findTopThreeBooks(Book* b) 
+{
+    double maxPrice1 = 0, maxPrice2 = 0, maxPrice3 = 0;
+    double maxRating1 = 0, maxRating2 = 0, maxRating3 = 0;
+    int index1 = -1, index2 = -1, index3 = -1;
+    int choice;
+
+    printf("Price or Rating? Press 1 for Price or 2 for Rating ::");
+    scanf("%d", &choice);
+
+    if (choice == 1) 
+	{
+        int i;
+        for (i = 0; i < MAX_BOOKS; i++) 
+		{
+            if (b[i].bookPrice > maxPrice1) //1st max
+			{
+                maxPrice3 = maxPrice2;
+                maxPrice2 = maxPrice1;
+                maxPrice1 = b[i].bookPrice;
+
+                index3 = index2;
+                index2 = index1;
+                index1 = i;
+            } else if (b[i].bookPrice > maxPrice2 && b[i].bookPrice != maxPrice1) //2nd max
+			{
+                maxPrice3 = maxPrice2;
+                maxPrice2 = b[i].bookPrice;
+
+                index3 = index2;
+                index2 = i;
+            } else if (b[i].bookPrice > maxPrice3 && b[i].bookPrice != maxPrice1 && b[i].bookPrice != maxPrice2) //3rd max
+			{
+                maxPrice3 = b[i].bookPrice;
+                index3 = i;
+            }
+        }
+    } else if (choice == 2) //1st max
+	{
+        int i;
+        for (i = 0; i < MAX_BOOKS; i++) {
+            if (b[i].bookRating > maxRating1) {
+                maxRating3 = maxRating2;
+                maxRating2 = maxRating1;
+                maxRating1 = b[i].bookRating;
+
+                index3 = index2;
+                index2 = index1;
+                index1 = i;
+            } else if (b[i].bookRating > maxRating2 && b[i].bookRating != maxRating1) //2nd max
+			{
+                maxRating3 = maxRating2;
+                maxRating2 = b[i].bookRating;
+
+                index3 = index2;
+                index2 = i;
+            } else if (b[i].bookRating > maxRating3 && b[i].bookRating != maxRating1 && b[i].bookRating != maxRating2) //3rd max
+			{
+                maxRating3 = b[i].bookRating;
+                index3 = i;
+            }
+        }
+    } else 
+	{
+        printf("***Invalid choice***\n");
+        return;
+    }
+
+    printf("***Top 3 books are***\n");
+    display(&b[index1]);
+    display(&b[index2]);
+    display(&b[index3]);
+}
+
+////add new book function
+//void addBook(Book* b, int* newBooks) {
+//    if (*newBooks >= MAX_BOOKS) {
+//        printf("Book lab is full. Cannot add more books.\n");
+//        return;
+//    }
+//
+//    printf("Enter Book Id: ");
+//    scanf("%d", &b[*newBooks].bookId);
+//
+//    printf("Enter Book Title: ");
+//    fflush(stdin);
+//    scanf("%s", b[*newBooks].bookTitle);
+//
+//    printf("Enter Author Name: ");
+//    fflush(stdin);
+//    scanf("%s", b[*newBooks].bookAuthor);
+//
+//    printf("Enter Price: ");
+//    scanf("%lf", &b[*newBooks].bookPrice);
+//
+//    printf("Enter Rating: ");
+//    scanf("%lf", &b[*newBooks].bookRating);
+//
+//    (*newBooks)++; // Increment the counter for current books
+//    printf("Book added successfully.\n");
+//}
+
+//set of books
+void setOfBooks(Book* b) 
+{
+    b[0].bookId = 1;
+    strcpy(b[0].bookTitle, "Saraswatichandra");
+    strcpy(b[0].bookAuthor, "Govardhanram Madhavram Tripathi");
+    b[0].bookPrice = 120.50;
+    b[0].bookRating = 4.3;
+
+    b[1].bookId=2;
+    strcpy(b[1].bookTitle,"Mrityunjay");
+    strcpy(b[1].bookAuthor,"Shivaji Sawant");
+    b[1].bookPrice=150.75;
+    b[1].bookRating=4.6;
+
+    b[2].bookId=3;
+    strcpy(b[2].bookTitle,"Yayati");
+    strcpy(b[2].bookAuthor,"V.S. Khandekar");
+    b[2].bookPrice=95.99;
+    b[2].bookRating=4.4;
+
+    b[3].bookId=4;
+    strcpy(b[3].bookTitle,"Shyamchi Aai");
+    strcpy(b[3].bookAuthor,"Sane Guruji");
+    b[3].bookPrice=80.00;
+    b[3].bookRating=4.8;
+
+    b[4].bookId=5;
+    strcpy(b[4].bookTitle,"Batatyachi Chal");
+    strcpy(b[4].bookAuthor,"P. L. Deshpande");
+    b[4].bookPrice=75.99;
+    b[4].bookRating=4.2;
+
+    b[5].bookId=6;
+    strcpy(b[5].bookTitle,"Nathmadhav");
+    strcpy(b[5].bookAuthor,"Nath Madhav");
+    b[5].bookPrice=65.75;
+    b[5].bookRating=4.5;
+
+    b[6].bookId=7;
+    strcpy(b[6].bookTitle,"Sukhachya Sarini He Manashi");
+    strcpy(b[6].bookAuthor,"Vrinda Bal");
+    b[6].bookPrice=50.50;
+    b[6].bookRating=4.7;
+
+    b[7].bookId=8;
+    strcpy(b[7].bookTitle,"Vyakti Ani Valli");
+    strcpy(b[7].bookAuthor,"P. L. Deshpande");
+    b[7].bookPrice=70.00;
+    b[7].bookRating=4.4;
+
+    b[8].bookId=9;
+    strcpy(b[8].bookTitle,"The Alchemist");
+    strcpy(b[8].bookAuthor,"Paulo Coelho");
+    b[8].bookPrice=12.99;
+    b[8].bookRating=4.5;
+
+    b[9].bookId=10;
+    strcpy(b[9].bookTitle,"To Kill a Mockingbird");
+    strcpy(b[9].bookAuthor,"Harper Lee");
+    b[9].bookPrice=10.50;
+    b[9].bookRating=4.7;
+}
